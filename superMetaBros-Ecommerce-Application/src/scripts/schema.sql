@@ -3,5 +3,8 @@ DROP TABLE IF EXISTS products;
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     itemName VARCHAR(100) NOT NULL,
-    price DECIMAL(10,2) NOT NULL
+    price DECIMAL(10,2) NOT NULL,
+    info  VARCHAR(1000) NOT NULL,
+    category VARCHAR(100) NOT NULL
+
 );

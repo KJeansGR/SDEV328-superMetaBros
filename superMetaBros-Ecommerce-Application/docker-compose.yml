@@ -8,7 +8,8 @@ services:
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      # - ./mysql_data:/var/lib/mysql this makes data persist through docker composes wich is not ideal for the project rubric so i commented it out
+      - ./src/scripts:/docker-entrypoint-initdb.d
     ports:
       - "3307:3306" # Host port 3307 -> container port 3306
 
