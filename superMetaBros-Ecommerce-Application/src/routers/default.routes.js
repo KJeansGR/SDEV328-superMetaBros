@@ -4,8 +4,8 @@ const router = Router();
 
 router.get("/", (req, res) => {
     res.render("default", {
-        title: "MVC Starter App",
-        subtitle: "Express + EJS + Static Assets"
+        title: "SuperMetaBros Beverages inc.",
+        subtitle: "we quench thirst!"
     });
 });
 
