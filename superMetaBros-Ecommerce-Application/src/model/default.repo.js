@@ -7,5 +7,6 @@ export const getAll = async () => {
 }
 // get by id
 export const getById = async id => {
-    const [rows] = await pool.query(`SELECT * FROM products WHERE id = ${id}`);
-    return rows[0];}
+    const [rows] = await pool.query("SELECT * FROM products  WHERE id=?", [id]);
+    return rows[0];
+}
