@@ -1,5 +1,5 @@
 import { Router } from "express";
-
+import * as productsController from '../controllers/default.controller.js'
 const router = Router();
 
 router.get("/", (req, res) => {
@@ -8,5 +8,7 @@ router.get("/", (req, res) => {
         subtitle: "Express + EJS + Static Assets"
     });
 });
+
+router.get("/products", productsController.getAll);
 
 export default router;
