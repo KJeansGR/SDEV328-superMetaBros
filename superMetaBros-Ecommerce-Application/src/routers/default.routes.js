@@ -10,5 +10,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/products", productsController.getAll);
+router.get("/products/:id", productsController.getById);
 
 export default router;

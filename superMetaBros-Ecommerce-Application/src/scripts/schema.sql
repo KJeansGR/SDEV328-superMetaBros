@@ -6,5 +6,4 @@ CREATE TABLE products (
     price DECIMAL(10,2) NOT NULL,
     info  VARCHAR(1000) NOT NULL,
     category VARCHAR(100) NOT NULL
-
 );
