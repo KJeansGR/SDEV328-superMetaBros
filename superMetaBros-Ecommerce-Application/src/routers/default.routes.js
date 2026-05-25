@@ -11,5 +11,6 @@ router.get("/", (req, res) => {
 
 router.get("/products", productsController.getAll);
 router.get("/products/:id", productsController.getById);
+router.post("/register", productsController.addProduct);
 
 export default router;
