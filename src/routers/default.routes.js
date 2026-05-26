@@ -6,6 +6,7 @@ router.get("/", productsController.renderHome);
 router.get("/products", productsController.getAll);
 router.get("/products/:id", productsController.getById);
 router.post("/register", productsController.addProduct);
+router.delete('/products/:id', productsController.removeProduct);
 
 //ejs page for login and sign-up
 router.get("/loginPage", productsController.renderLogin);

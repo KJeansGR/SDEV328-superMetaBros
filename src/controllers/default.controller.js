@@ -84,5 +84,29 @@ export const addProduct = async (req,res) =>{
         console.log(error);
         res.status(500).json({ message: 'Server error', data: null });
     }
+}
 
+
+
+export const removeProduct = async (req,res) =>{
+    const id = Number(req.params.id);
+    
+    if(!id){
+        return res.status(404).json({
+            message: `item with ${id} not found`
+        });
+    }
+    try {
+           
+        const deleted= await productService.removeProduct(id);
+
+        res.json({ message: 'Deleted', data: deleted });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            message: error,
+            data: null
+        })
+    }
 }

@@ -7,7 +7,11 @@ export const addProduct = async data =>{
     const addNewProduct = {...data} // later maybe will need to have more adjustable info, for now just a full spread/copy
 
     return await repo.addProduct(addNewProduct);
-  }
+}
+
+
+
+export const removeProduct = async id => await repo.removeProduct(id);
 
 
   // console.log(await getAll());

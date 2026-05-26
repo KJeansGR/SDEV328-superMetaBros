@@ -24,3 +24,16 @@ export const addProduct = async data => {
     
     return added;
 }
+
+
+// remove product 
+export const removeProduct = async id => {
+    //{table data, item name,description,price, etc...} = data
+
+    const deleted = await getById(id);
+    if(!deleted) return null;
+
+    await pool.query("DELETE FROM products WHERE id =?" , [id]);
+    return deleted;
+}
+
