@@ -162,6 +162,11 @@ code {
     margin: 2rem 0;
 
     
+    @media(max-width: 900px) {
+        justify-self: center;
+        width: 280px;
+    }
+
 }
 
 .btn-primary, .btn-secondary, .btn-sm {
