@@ -1,5 +1,0 @@
-node_modules
-# MySQL Docker data
-mysql_data/
-
-.env
