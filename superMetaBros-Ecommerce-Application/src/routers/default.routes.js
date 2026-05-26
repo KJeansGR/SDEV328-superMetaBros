@@ -11,5 +11,12 @@ router.get("/", (req, res) => {
 
 router.get("/products", productsController.getAll);
 router.get("/products/:id", productsController.getById);
+router.post("/register", productsController.addProduct);
+
+//ejs page for login and sign-up
+router.get("/loginPage", (req, res) => {
+  res.render("loginPage");
+});
+
 
 export default router;

@@ -3,5 +3,11 @@ import * as repo from '../model/default.repo.js'
 
 export const getAll = async () => await repo.getAll();
 export const getById = async id => await repo.getById(id);
+export const addProduct = async data =>{
+    const addNewProduct = {...data} // later maybe will need to have more adjustable info, for now just a full spread/copy
 
-// console.log(await getAll());
+    return await repo.addProduct(addNewProduct);
+  }
+
+
+  // console.log(await getAll());

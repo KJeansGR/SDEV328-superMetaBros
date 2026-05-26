@@ -36,3 +36,28 @@ export const getById = async (req, res) => {
         });
     }
 }
+
+export const addProduct = async (req,res) =>{
+  const {itemName, price, info, category} = req.body;
+
+    if(!price || !itemName || !info || !category){
+        return res.status(400).json({
+        message: "Missing required fields",
+        data: null
+      })
+    }
+    try {
+        const created = await productService.addProduct({
+          itemName, price, info, category
+        }); 
+
+        res.status(201).json({
+            message: `Success creating new product`,
+            data: created
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Server error', data: null });
+    }
+
+}
