@@ -1,6 +1,26 @@
 //place controller functions here...
 import * as productService from '../services/default.service.js'
 
+export const renderHome = async (req, res) => {
+    try {
+        const records = await productService.getAll();
+        res.render("default", {
+            title: "SuperMetaBros Beverages inc.",
+            subtitle: "We quench thirst!",
+            products: records
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).render("error", { message: "Failed to load dynamic inventory." });
+    }
+};
+
+export const renderLogin = (req, res) => {
+    res.render("loginPage", {
+        title: "Sign In | SuperMetaBros"
+    });
+};
+
 export const getAll = async (req, res) => {
     try {
         const records = await productService.getAll();
