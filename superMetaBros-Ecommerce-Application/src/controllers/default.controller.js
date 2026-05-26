@@ -7,14 +7,19 @@ export const renderHome = async (req, res) => {
         res.render("default", {
             title: "SuperMetaBros Beverages inc.",
             subtitle: "We quench thirst!",
-            products: records
+            products: records 
         });
     } catch (error) {
-        console.log(error);
-        res.status(500).render("error", { message: "Failed to load dynamic inventory." });
-    }
+    console.error("--- DATABASE LAYER ERROR LOG ---");
+    console.error(error); 
+    console.error("--------------------------------");
+    
+    res.status(500).json({ 
+        message: "Failed to load dynamic inventory.",
+        error: error.toString()
+    });
+}
 };
-
 export const renderLogin = (req, res) => {
     res.render("loginPage", {
         title: "Sign In | SuperMetaBros"
