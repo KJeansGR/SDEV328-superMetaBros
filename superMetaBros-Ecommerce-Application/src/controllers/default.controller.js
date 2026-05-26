@@ -16,7 +16,7 @@ export const getAll = async (req, res) => {
     }
 };
 
-export const getById = async (req,res) =>{
+export const getById = async (req, res) => {
     const id = req.params.id;
     try {
         const product = await productService.getById(id);
