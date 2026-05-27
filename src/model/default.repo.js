@@ -1,13 +1,34 @@
 import pool from "./db.connect.js";
 
-//read 
-export const getAll = async () => {
-    const [rows] = await pool.query("SELECT * FROM products")
+// get all products and apply filters
+export const getAll = async (filters) => {
+    let baseQuery = "SELECT * FROM products";
+    let whereClauses = false;
+    let values = [];
+    
+    if (filters?.search && filters.search.trim() != "") {
+        baseQuery += " WHERE itemName LIKE ?";
+        whereClauses = true;
+        values.push(`%${filters.search}%`);
+    }
+    if (filters?.sortCategory && filters.sortCategory !== "none") {
+        baseQuery += whereClauses ? " AND category = ?" : " WHERE category = ?"
+        whereClauses = true;
+        values.push(filters.sortCategory);
+    }
+    if (filters?.sortPrice === "asc") {
+        baseQuery += " ORDER BY price ASC";
+    }
+    if (filters?.sortPrice === "desc") {
+        baseQuery += " ORDER BY price DESC";
+    }
+
+    const [rows] = await pool.query(baseQuery, values);
     return rows;
 }
 // get by id
 export const getById = async id => {
-    const [rows] = await pool.query("SELECT * FROM products  WHERE id=?", [id]);
+    const [rows] = await pool.query("SELECT * FROM products WHERE id=?", [id]);
     return rows[0];
 }
 // add product 

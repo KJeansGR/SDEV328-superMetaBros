@@ -7,6 +7,7 @@ export const renderHome = async (req, res) => {
         res.render("default", {
             title: "SuperMetaBros Beverages inc.",
             subtitle: "We quench thirst!",
+            howToOrder: "Add an item you like from the menu to your cart, or view more information about it. Once you've decided, it will be prepared for you.", //description of service, like a robot that makes a drink your you, or an online order for pick up later.
             products: records 
         });
     } catch (error) {
@@ -27,8 +28,12 @@ export const renderLogin = (req, res) => {
 };
 
 export const getAll = async (req, res) => {
+    
+    const {search, sortPrice, sortCategory} = req.query; // these search filters are filled out from fetch request in homepage.js otherwise null/undefined
+    const filters = {search, sortPrice, sortCategory};
+    
     try {
-        const records = await productService.getAll();
+        const records = await productService.getAll(filters);
         res.json({ 
             message: 'OK', 
             data: records 
