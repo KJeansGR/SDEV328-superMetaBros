@@ -56,6 +56,42 @@ body {
     }
 }
 
+.search-container {
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+}
+
+
+#sortCategory, #sortPrice, #search {
+    background-color: #00000000;
+    color: #ffffff;
+    border-width: 0.1rem;
+    border-color: rgba(255, 255, 255, 0.205);
+    border-radius: 0.5rem;
+    padding: 0.3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+/* Children of sort */
+#sortCategory option, #sortPrice option {
+    background-color: #0a0a25;
+    color: #ffffff;
+    padding-left: 0.05rem;
+    padding-right: 0.05rem;
+    border-color: rgb(36, 40, 87);
+}
+
+#search {
+    border-radius: 0rem;
+}
+
+.searchForm *{
+    align-content: center;
+    margin-bottom: 1rem;
+    margin-right: 0.5rem;
+}
+
 .hero-image {
     display: flex;
     justify-content: center;

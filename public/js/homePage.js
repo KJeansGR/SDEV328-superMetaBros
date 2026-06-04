@@ -44,11 +44,22 @@ async function handleSearchFormSubmit(e){
           <span class="category-badge">${product.category}</span>
           <p class="product-info">${product.info}</p>
           <div class="card-footer">
-              <span class="product-price">${Number(product.price).toFixed(2)}</span>
+              <span class="product-price">$${Number(product.price).toFixed(2)}</span>
               <a href="/smb/products/${product.id}" class="btn-sm">View Details</a>
           </div>
       </div>`
     })
+  
+  if(grid.innerHTML == ""){
+    grid.innerHTML +=      
+    `
+    <div class="hero-content">
+        <h1>Search came up dry</h1>
+        <p>Try again with different search terms?</p>
+    </div>
+    `
+  }  
+
 }
 
 //POSSIBLE POST ROUTE MAYBE FOR USERS TABLE IF SWITCH THE LOGIC FOR THAT TABLE
