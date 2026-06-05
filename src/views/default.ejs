@@ -55,21 +55,24 @@
     </div> 
 
    <section class="products-grid">
-       <% if (typeof products !== 'undefined' && products.length > 0) { %>
-           <% products.forEach(product => { %>
-               <div class="card product-card">
-                   <h3><%= product.itemName %></h3>
-                   <span class="category-badge"><%= product.category %></span>
-                   <p class="product-info"><%= product.info %></p>
-                   <div class="card-footer">
-                        <span class="product-price">$<%= Number(product.price).toFixed(2) %></span>
-                       <a href="/smb/products/<%= product.id %>" class="btn-sm">View Details</a>
-                   </div>
-               </div>
-           <% }) %>
-       <% } else { %>
-           <p>No delicious drinks available at the moment. Check back soon!</p>
-       <% } %>
+    <% if (typeof products !== 'undefined' && products.length > 0) { %>
+        <% products.forEach(product => { %>
+            <div class="card product-card">
+                <h3><%= product.name %></h3> 
+                
+                <span class="category-badge"><%= product.category %></span>
+                
+                <p class="product-info"><%= product.description %></p>
+                
+                <div class="card-footer">
+                    <span class="product-price">$<%= Number(product.price).toFixed(2) %></span>
+                    <a href="/smb/products/<%= product.id %>" class="btn-sm">View Details</a>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No delicious drinks available at the moment. Check back soon!</p>
+    <% } %>
    </section>
 </main>
 
