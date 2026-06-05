@@ -64,10 +64,10 @@ Build a data display page for all drinks and page showing singular drink data
 ## Views/Inputs
 - *Default, all beverages with filtering* ~ ~~milestone 1~~ DONE
 - *Browse beverage catalogue* ~ ~~milestone 2~~ DONE
-- Order beverage
+- ~~Order beverage~~ DONE 
 - *View single Beverage* ~ ~~milestone 2~~ DONE
 ## Controllers
-- Database catalogue changes between user input and clicks
+- ~~Database catalogue changes between user input and clicks~~ DONE
 - ~~Add to beverage view count on page load of a beverage~~ ~ (Reducing scope creep past milestone 2)
 - ~~Request model removes 'quantity' of item ordered from catalogue on order~~ ~ (Reducing scope creep past milestone 2)
 - ~~Request model re-adds 'quantity' of item ordered to catalogue on order cancellation~~ ~ (Reducing scope creep past milestone 2)
