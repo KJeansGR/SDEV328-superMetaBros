@@ -115,3 +115,40 @@ export const removeProduct = async (req,res) =>{
         })
     }
 }
+
+export const createOrder = async (req, res) => {
+    try {
+        const { productId, quantity } = req.body;
+
+        const product = await productService.getById(productId);
+
+        if (!product) {
+            return res.status(404).json({ 
+                message: "This beverage is no longer available in our catalogue." 
+            });
+        }
+
+        const orderQuantity = Number(quantity);
+        const totalCost = Number(product.price) * orderQuantity;
+
+        console.log(`--- Real-time Database Validation ---`);
+        console.log(`Verified Product: ${product.itemName}`); 
+        console.log(`Live Catalogue Price: $${product.price}`);
+        console.log(`Calculated Total: $${totalCost.toFixed(2)}`);
+        console.log(`-------------------------------------`);
+
+        res.status(201).json({
+            message: "Order finalized successfully!",
+            receipt: {
+                item: product.itemName, 
+                category: product.category,
+                quantity: orderQuantity,
+                totalPaid: `$${totalCost.toFixed(2)}`
+            }
+        });
+
+    } catch (error) {
+        console.error("Error processing order validation:", error);
+        res.status(500).json({ message: "Server error executing your order processing." });
+    }
+};

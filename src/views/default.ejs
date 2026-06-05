@@ -59,11 +59,20 @@
         <% products.forEach(product => { %>
             <div class="card product-card">
                 <h3><%= product.name %></h3> 
-                
                 <span class="category-badge"><%= product.category %></span>
-                
                 <p class="product-info"><%= product.description %></p>
                 
+                <form action="/smb/orders" method="POST" class="order-form">
+                    <input type="hidden" name="productId" value="<%= product.id %>">
+                    
+                    <div class="qty-container">
+                        <label for="qty-<%= product.id %>">Qty:</label>
+                        <input type="number" id="qty-<%= product.id %>" name="quantity" value="1" min="1" class="qty-input">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-order">Order Beverage</button>
+                </form>
+
                 <div class="card-footer">
                     <span class="product-price">$<%= Number(product.price).toFixed(2) %></span>
                     <a href="/smb/products/<%= product.id %>" class="btn-sm">View Details</a>
