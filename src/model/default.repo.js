@@ -23,9 +23,7 @@ export const getAll = async (filters) => {
         baseQuery += " ORDER BY price DESC";
     }
 
-    const [rows] = await pool.query(
-    "SELECT id, itemName AS name, price, info AS description, category FROM products"
-    );
+    const [rows] = await pool.query(baseQuery, values);
     return rows;
 }
 // get by id

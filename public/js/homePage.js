@@ -78,7 +78,8 @@ async function handleSearchFormSubmit(e) {
     const sortPrice = document.querySelector("#sortPrice").value;  
     const sortCategory = document.querySelector("#sortCategory").value;
 
-    const url = `${routerMount}/products?search=${search}&sortPrice=${sortPrice}&sortCategory=${sortCategory}`;
+    const url = `http://localhost:8001/smb/products?search=${search}&sortPrice=${sortPrice}&sortCategory=${sortCategory}`;
+       
 
     try {
         const response = await fetch(url);
@@ -89,11 +90,10 @@ async function handleSearchFormSubmit(e) {
         grid.innerHTML = "";
         
         result.data.forEach(product => {
-            grid.innerHTML += `
-            <div class="card product-card">
-                <h3>${product.name}</h3>
+            grid.innerHTML += `<div class="card product-card">
+                <h3>${product.itemName}</h3>
                 <span class="category-badge">${product.category}</span>
-                <p class="product-info">${product.description}</p>
+                <p class="product-info">${product.info}</p>
                 
                 <form action="/smb/orders" method="POST" class="order-form">
                     <input type="hidden" name="productId" value="${product.id}">
