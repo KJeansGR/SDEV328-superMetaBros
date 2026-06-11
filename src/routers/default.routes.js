@@ -11,6 +11,11 @@ router.delete('/products/:id', productsController.removeProduct);
 
 //ejs page for login and sign-up
 router.get("/loginPage", productsController.renderLogin);
+router.post("/loginPage", productsController.login);
+router.get("/createAccount", productsController.renderCreateAccount);
+router.post("/createAccount", productsController.createAccount);
+router.get("/account", productsController.isLoggedIn, productsController.renderAccount);
+router.get("/logout", productsController.logout);
 
 
 export default router;

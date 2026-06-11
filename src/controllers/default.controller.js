@@ -8,7 +8,8 @@ export const renderHome = async (req, res) => {
             title: "SuperMetaBros Beverages inc.",
             subtitle: "We quench thirst!",
             howToOrder: "Add an item you like from the menu to your cart, or view more information about it. Once you've decided, it will be prepared for you.", //description of service, like a robot that makes a drink your you, or an online order for pick up later.
-            products: records 
+            products: records,
+            user: req.session.user
         });
     } catch (error) {
     console.error("--- DATABASE LAYER ERROR LOG ---");
@@ -21,11 +22,68 @@ export const renderHome = async (req, res) => {
     });
 }
 };
+
+
 export const renderLogin = (req, res) => {
     res.render("loginPage", {
-        title: "Sign In | SuperMetaBros"
+       title: "Login | SuperMetaBros",
+       user: req.session.user
     });
 };
+export const renderAccount = (req, res) => {
+    res.render("account", {
+       title: req.user.username + " Account | SuperMetaBros"
+      ,user: req.session.user
+    });
+};
+export const renderCreateAccount = (req, res) => {
+    res.render("createAccount", {
+       title: "Create Account | SuperMetaBros"
+       ,user: req.session.user
+    });
+};
+export const createAccount = async (req, res) =>{
+  const {username, password,email} = req.body;
+  //ERRORS CHECKS here ..
+  //
+  //
+  await productService.createUser(username, password, email);
+};
+export const login = async (req,res) =>{
+  const {username, password} = req.body;
+  
+
+  const user = await productService.findByUsername(username);
+  const isValid = await productService.validatePassword(password, user.password);
+
+  if(!isValid){
+    console.log("error logging in");
+    return res.redirect("/smb");
+  }
+  else{
+    console.log("Login success");
+  }
+
+  req.session.user = {
+    userId: user.createUser,
+    username: user.username,
+    role: user.role
+  }
+
+  res.redirect("/smb/account");
+}
+export const isLoggedIn = (req, res, next) =>{
+  if(!req.user){
+    return res.redirect("/smb");
+  }
+  next();
+}
+export const logout = (req, res) =>{
+  req.session.destroy(() => {
+    return res.redirect("/smb/loginPage")
+  })
+}
+
 
 export const getAll = async (req, res) => {
     

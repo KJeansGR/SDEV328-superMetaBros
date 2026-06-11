@@ -144,4 +144,10 @@ INSERT INTO products (itemName, price, info, category) VALUES
   4.35,
   'Frozen grape slush packed with sweet cosmic flavor.',
   'Slush'
-)
+);
+
+INSERT INTO users (username, password, email, role) VALUES
+('WillyWonka', 'pass', '', 'admin'),
+('tonmythical', 'pass', '','admin'),
+('matterwoven', 'pass', '', 'admin');
+
